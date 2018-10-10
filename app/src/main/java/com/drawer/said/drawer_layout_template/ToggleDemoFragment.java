@@ -40,21 +40,21 @@ public class ToggleDemoFragment extends Fragment implements CompoundButton.OnChe
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         int id = buttonView.getId();
-        String messsage = "";
+        String message = "";
 
         switch (id){
             case R.id.toggle_button:
                 toggleButtonValue = isChecked;
-                messsage = isChecked ? "Toggle Button is on" : "Toggle Button is off";
+                message = isChecked ? "Toggle Button is on" : "Toggle Button is off";
                 break;
 
             case R.id.toggle_switch:
                 toggleSwitchValue = isChecked;
-                messsage = isChecked ? "Switch is on" : "Switch is off";
+                message = isChecked ? "Switch is on" : "Switch is off";
                 break;
         }
 
-        Toast.makeText(getActivity(), messsage, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
 
     }
 

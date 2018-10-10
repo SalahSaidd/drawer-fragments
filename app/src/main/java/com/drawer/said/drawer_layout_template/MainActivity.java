@@ -14,7 +14,9 @@ import android.view.MenuItem;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private DrawerLayout drawer;
+    private PickerDemoFragment PickerDemo = new PickerDemoFragment();
+    private TextFieldDemoFragment TextFieldDemo = new TextFieldDemoFragment();
+    private ToggleDemoFragment ToggleDemo = new ToggleDemoFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,29 +72,23 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
         switch (id){
             case R.id.picker_demo:
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                PickerDemoFragment pickerDemoFragment = new PickerDemoFragment();
-                transaction.replace(R.id.fragment_container, pickerDemoFragment);
+                transaction.replace(R.id.fragment_container, PickerDemo);
                 transaction.commit();
                 break;
             case R.id.textfield_demo:
-                FragmentTransaction transaction1 = getSupportFragmentManager().beginTransaction();
-                TextFieldDemoFragment textfieldDemoFragment = new TextFieldDemoFragment();
-                transaction1.replace(R.id.fragment_container, textfieldDemoFragment);
-                transaction1.commit();
+                transaction.replace(R.id.fragment_container, TextFieldDemo);
+                transaction.commit();
                 break;
-            case R.id.toggle_button:
-                FragmentTransaction transaction2 = getSupportFragmentManager().beginTransaction();
-                ToggleDemoFragment toggleDemoFragment = new ToggleDemoFragment();
-                transaction2.replace(R.id.fragment_container, toggleDemoFragment);
-                transaction2.commit();
+            case R.id.toggle_demo:
+                transaction.replace(R.id.fragment_container, ToggleDemo);
+                transaction.commit();
                 break;
         }
-
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

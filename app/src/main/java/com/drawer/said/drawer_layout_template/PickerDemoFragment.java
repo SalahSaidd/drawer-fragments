@@ -21,15 +21,13 @@ import java.util.Calendar;
 
 public class PickerDemoFragment extends Fragment implements View.OnClickListener {
 
-    public EditText dateEditText;
-    public EditText timeEditText;
+    public static EditText dateEditText;
+    public static EditText timeEditText;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.picker_demo_layout, container, false);
-
-
 
         dateEditText = layout.findViewById(R.id.date_editText);
         timeEditText = layout.findViewById(R.id.time_editText);
@@ -77,15 +75,21 @@ public class PickerDemoFragment extends Fragment implements View.OnClickListener
 
             if(hourOfDay > 12){
                 time = (hourOfDay - 12) + ":" + minute + " PM";
+
             } else if(hourOfDay == 12){
                 time = hourOfDay + ":" + minute + " PM";
+
             } else if(hourOfDay == 0){
                 time = "12:" + minute + " AM";
+
             } else {
                 time = hourOfDay + ":" + minute + " AM";
+
             }
 
             Toast.makeText(getActivity(), time, Toast.LENGTH_SHORT).show();
+            timeEditText.setText(time);
+
         }
     }
 
@@ -108,6 +112,8 @@ public class PickerDemoFragment extends Fragment implements View.OnClickListener
             // Do something with the date chosen by the user
             month += 1; // increment month since month starts with 0
             Toast.makeText(getActivity(), year+"-"+month+"-"+dayOfMonth, Toast.LENGTH_SHORT).show();
+            dateEditText.setText(year+"-"+month+"-"+dayOfMonth);
+
         }
     }
 }
